@@ -3,6 +3,9 @@ html,body{
     margin: 0;
     padding: 0;
 }
+.move{
+  cursor: move;
+}
 .demo {
     height: 100vh;
     display: flex;
@@ -40,6 +43,7 @@ html,body{
     background-color: #fff;
     margin-left: 5px;
     margin-right: 5px;
+    overflow-y: scroll;
   }
 
   /* 控件 */
@@ -98,3 +102,4 @@ html,body{
 .show{
     display: block;
 }
+/* 内容 */

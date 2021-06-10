@@ -1,0 +1,32 @@
+.form_page{
+    width: 100%;
+    min-height: 300px;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px dashed #999;
+    margin-bottom: 10px;
+    background: #fff;
+    position: relative;
+}
+.isSelected{
+    background: #f6faff;
+}
+.isSelected::after{
+    font-family:"anticon" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content:'\e69f';
+    position: absolute;
+    bottom: -12px;
+    right: 10px;
+    color: #F56C6C;
+    background: #fef0f0;
+    border-color: #fbc4c4;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}

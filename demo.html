@@ -6,67 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/antd-iconfont/iconfont.css">
     <link rel="stylesheet" href="./1.0.1/css/sinoui.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <link rel="stylesheet" href="demo.css">
-    <script src="demo.js"></script>
+    <link rel="stylesheet" href="./demo.css">
+    <link rel="stylesheet" href="./static/css/components.css">
+
 </head>
 
 <body>
-    <div class="demo" id="app">
-        <div class="titleBox">
-            <button>保存dd</button>
-            <button>另存为</button>
-        </div>
-        <div class="content">
-            <div class="left">
-                <div class="fields_list">
-                    <div>
-                        <div class="field_title">General</div>
-                        <ul>
-                            <li class="field_label"><i></i><span>Page</span></li>
-                            <li class="field_label"><i></i><span>Row</span></li>
-                            <li class="field_label"><i></i><span>Navbar</span></li>
-                            <li class="field_label"><i></i><span>Form</span></li>
-                            <li class="field_label"><i></i><span>Button Group</span></li>
-                            <li class="field_label"><i></i><span>Button</span></li>
-                            <li class="field_label"><i></i><span>Section</span></li>
-                            <li class="field_label"><i></i><span>Input</span></li>
-                            <li class="field_label"><i></i><span>Hidden</span></li>
-                            <li class="field_label"><i></i><span>Table</span></li>
-                            <li class="field_label"><i></i><span>Columns</span></li>
-                            <li class="field_label"><i></i><span>Details</span></li>
-                            <li class="field_label"><i></i><span>Text</span></li>
-                            <li class="field_label"><i></i><span>Text</span></li>
-                            <li class="field_label"><i></i><span>TextArea</span></li>
-                            <li class="field_label"><i></i><span>Checkboxes</span></li>
-                            <li class="field_label"><i></i><span>Checkbox</span></li>
-                            <li class="field_label"><i></i><span>Radios</span></li>
-                            <li class="field_label"><i></i><span>Select</span></li>
-                            <li class="field_label"><i></i><span>Option</span></li>
-                            <li class="field_label"><i></i><span>DatePicket</span></li>
-                        </ul>
+    <div id="app">
+        <div class="demo">
+            <div class="titleBox">
+                <button>保存</button>
+                <button>另存为</button>
+            </div>
+            <div class="content">
+                <div class="left">
+                    <div class="fields_list">
+                        <div>
+                            <div class="field_title">General</div>
+                            <ul>
+                                <li class="field_label move" @click="add(item)" @dragstart="dragstart($event, item)" @dragend="dragend($event,item)" draggable="true" v-for="item in originData"><i></i><span>{{item.name}} </span></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="center"></div>
-            <div class="right">
-                <ul id="tab">
-                    <li class="active" data-value="property" >属性</li>
-                    <li data-value="event">事件</li>
-                </ul>
-                <div class="cards">
-                    <div id="property" class="hide show">
-                        属性
-                    </div>
-                    <div id="event" class="hide">
-                        事件
+
+                <div class="center outline" @drop="drop" @dragover.prevent v-html="droppedItem">
+
+                </div>
+                <div class="right">
+                    <ul id="tab">
+                        <li class="active" data-value="property">属性</li>
+                        <li data-value="event">事件</li>
+                    </ul>
+                    <div class="cards">
+                        <div id="property" class="hide show">
+                            属性
+                        </div>
+                        <div id="event" class="hide">
+                            事件
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="./demo.js"></script>
 </html>
