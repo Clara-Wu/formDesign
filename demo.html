@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/iview/dist/styles/iview.css">
     <link rel="stylesheet" href="./node_modules/antd-iconfont/iconfont.css">
     <link rel="stylesheet" href="./1.0.1/css/sinoui.min.css">
     <link rel="stylesheet" href="./demo.css">
     <link rel="stylesheet" href="./static/css/components.css">
-
 </head>
 
 <body>
@@ -26,13 +26,18 @@
                         <div>
                             <div class="field_title">General</div>
                             <ul>
-                                <li class="field_label move" @click="add(item)" @dragstart="dragstart($event, item)" @dragend="dragend($event,item)" draggable="true" v-for="item in originData"><i></i><span>{{item.name}} </span></li>
+                                <li class="field_label move" @dragstart="dragstart($event, item)"
+                                    @dragend="dragend($event,item)" draggable="true" v-for="item in originData">
+                                    <i></i><span>{{item.name}} </span>
+                                    
+                                </li>
                             </ul>
+                            
                         </div>
                     </div>
                 </div>
 
-                <div class="center outline" @drop="drop" @dragover.prevent v-html="droppedItem">
+                <div class="center outline" @drop="drop" @dragover.prevent v-html="pageBox">
 
                 </div>
                 <div class="right">
@@ -41,8 +46,8 @@
                         <li data-value="event">事件</li>
                     </ul>
                     <div class="cards">
-                        <div id="property" class="hide show">
-                            属性
+                        <div id="property" class="hide show" v-html="propertyBox">
+                            
                         </div>
                         <div id="event" class="hide">
                             事件
@@ -53,6 +58,11 @@
         </div>
     </div>
 </body>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<script src="./static/js/vue.min.js"></script>
+<script src="./static/js/sortable.js"></script>
+<script src="./static/js/vuedraggable.umd.js"></script>
+<script src="./node_modules/iview/dist/iview.js"></script>
 <script src="./demo.js"></script>
+
 </html>
