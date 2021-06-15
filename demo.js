@@ -8,86 +8,111 @@ var app = new Vue({
     return {
       originData: [
         {
-          name: "Page",
+          type: "Page",
+          label: "页面",
           isSelected: true,
           data_id: "page",
-          property: {
-            title: "页面",
-            class: "form_page",
+          // property: {
+          //   title: "页面",
+          //   class: "form_page",
+          // },
+          children: {
+            rows: [],
           },
           event: {},
         },
         {
-          name: "Row",
+          type: "Row",
+          label: "行",
           span: 2,
           gutter: 10,
           isSelected: false,
           data_id: "row",
-          property: {
-            title: "row",
-            class: "form_row",
-          },
+          // property: {
+          //   title: "row",
+          //   class: "form_row",
+          // },
           event: {},
         },
         {
-          name: "Navbar",
+          type: "Navbar",
+          label: "",
         },
         {
-          name: "Form",
+          type: "Form",
+          label: "",
         },
         {
-          name: "Button Group",
+          type: "Button Group",
+          label: "",
         },
         {
-          name: "Button",
+          type: "Button",
+          label: "",
         },
         {
-          name: "Section",
+          type: "Section",
+          label: "",
         },
         {
-          name: "Input",
+          type: "Input",
+          label: "",
         },
         {
-          name: "Hidden",
+          type: "Hidden",
+          label: "",
         },
         {
-          name: "Table",
+          type: "Table",
+          label: "",
         },
         {
-          name: "Columns",
+          type: "Columns",
+          label: "",
         },
         {
-          name: "Details",
+          type: "Details",
+          label: "",
         },
         {
-          name: "Text",
+          type: "Text",
+          label: "",
         },
         {
-          name: "Details",
+          type: "Details",
+          label: "",
         },
         {
-          name: "Text",
+          type: "Text",
+          label: "",
         },
         {
-          name: "TextArea",
+          type: "TextArea",
+          label: "",
         },
         {
-          name: "Checkboxes",
+          type: "Checkboxes",
+          label: "",
         },
         {
-          name: "Checkbox",
+          type: "Checkbox",
+          label: "",
         },
         {
-          name: "Radios",
+          type: "Radios",
+          label: "",
         },
         {
-          name: "Select",
+          type: "Select",
+          label: "",
         },
         {
-          name: "Option",
+          type: "Option",
+          label: "",
         },
         {
-          name: "DatePicket",
+          type: "DatePicket",
+          label: "",
         },
       ],
       id: "aaa",
@@ -95,12 +120,14 @@ var app = new Vue({
       pageBox: "",
       rowBox: "",
       propertyBox: "",
+      drag: false,
     };
   },
   methods: {
     add(item) {
       let uuid = this.guid();
       var attr = null;
+      console.log(item)
       this.propertyBox = this.initPageProperty(item);
       if (item.data_id == "page") {
         this.pageBox += this.addPage(uuid, item);
@@ -110,10 +137,20 @@ var app = new Vue({
           type: "page",
           row: [],
         };
+        console.log(attr)
       } else if (item.data_id == "row") {
         this.rowBox += this.addRow(uuid, item);
       }
       this.items.push(attr);
+    },
+    handleWidgetAdd(item){
+      console.log("1111")
+    },
+    onEnd(){
+      console.log("222")
+    },
+    handleFieldClick(item){
+      console.log(item)
     },
     dragstart(e, item) {
       console.log("start");
@@ -135,8 +172,8 @@ var app = new Vue({
       let item = this.originData.filter((el) => {
         return el.data_id == e.dataTransfer.getData("item");
       });
-      console.log(item);
-      this.add(item[0]);
+      // console.log(item);
+      // this.add(item[0]);
     },
     S4() {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -166,21 +203,20 @@ var app = new Vue({
       // } else {
       //   className = item.class + " isSelected";
       // }
-
       html += `<div class="form_page isSelected" id="${uuid}"'>
-                <h4>${item.property.title}</h4>
+                <h4>${item.label}</h4>
                 <div class="form_page_content" @drop="drop" @dragover.prevent v-html="${this.rowBox}"></div>
             </div> 
             `;
       return html;
     },
     initPageProperty(item) {
-      console.log(item);
+      console.log(item)
       var html = "";
       html += `
       <div class="item_property">
           <span>标题</span>
-          <input type="text" v-model="${item.property.title}"/>
+          <input type="text" v-model="${item.label}"/>
       </div>
       `;
       return html;

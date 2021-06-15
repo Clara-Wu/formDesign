@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./1.0.1/css/sinoui.min.css">
     <link rel="stylesheet" href="./demo.css">
     <link rel="stylesheet" href="./static/css/components.css">
+
 </head>
 
 <body>
@@ -25,21 +26,34 @@
                     <div class="fields_list">
                         <div>
                             <div class="field_title">General</div>
-                            <ul>
+                            <!-- <ul>
                                 <li class="field_label move" @dragstart="dragstart($event, item)"
                                     @dragend="dragend($event,item)" draggable="true" v-for="item in originData">
-                                    <i></i><span>{{item.name}} </span>
+                                    <i></i><span>{{item.type}} </span>
                                     
                                 </li>
-                            </ul>
-                            
+                            </ul> -->
+                            <template>
+                                <draggable tag="ul" v-bind="{group:{name: 'form',pull:'clone', put: false },sort: false}"
+                                    animation="300">
+                                    <li class="field_label move" :key="index" v-for="(item, index) in originData">
+                                        <a @click="handleFieldClick(item)">
+                                            <span>{{item.type}}</span>
+                                        </a>
+                                    </li>
+                                </draggable>
+                            </template>
                         </div>
                     </div>
                 </div>
 
-                <div class="center outline" @drop="drop" @dragover.prevent v-html="pageBox">
+                <!-- <div class="center outline" @drop="drop" @dragover.prevent v-html="pageBox"> -->
+                <draggable class="center outline" group="form" animation="300" @add="handleWidgetAdd" @end="onEnd" v-html="pageBox"
+                :list="items">
 
-                </div>
+                </draggable>
+                <!-- </div> -->
+
                 <div class="right">
                     <ul id="tab">
                         <li class="active" data-value="property">属性</li>
@@ -47,7 +61,7 @@
                     </ul>
                     <div class="cards">
                         <div id="property" class="hide show" v-html="propertyBox">
-                            
+
                         </div>
                         <div id="event" class="hide">
                             事件
